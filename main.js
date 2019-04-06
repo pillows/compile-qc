@@ -28,8 +28,12 @@ app.get('/create-account', (req, res) => {
 app.post('/create-account', (req, res, next) => {
     //temp group until assigned
     users[req.body.username] = null
+    res.redirect('dashboard')
 })
 
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard')
+})
 
 
 app.get('/code', (req, res) => {
