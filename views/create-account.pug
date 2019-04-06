@@ -1,8 +1,29 @@
-<h1>create an account</h1>
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Document
+        script(src="https://code.jquery.com/jquery-2.2.4.min.js", integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=",crossorigin="anonymous")
+        link(href='create_account.css', rel='stylesheet')
+        script(src='create_account.js' type='text/javascript')
+    body
+        div(class='hero')
+            div(class='overlay')
+                div(class='selectors')
+                    button(class='choices focus' value='teacher' type='button') I am a teacher
+                    button(class='choices' value='student' type='button') I am a student
+                a(href="#account-form" class='continue') &#9654
 
-<form method="POST" action="/create-account" >
-    <h3>username: </h3> <input name='username' type='text'><br>
-    <h3>password: </h3> <input name='password' type='password'><br>
-    <h3>email: </h3> <input name='email' type='email'>
-    <input type='submit'>
-</form>
+        div(id="account-form")
+            div(class='form-container')
+                <h1>Create Your Account</h1>
+                <form method="POST" action="/create-account" >
+                    <h3>Username: </h3> <input name='username' type='text'><br>
+                    <h3>Password: </h3> <input name='password' type='password'><br>
+                    <h3>Email: </h3> <input name='email' type='email'>
+                    <br>
+                    <input class='submit-btn' type='submit'>
+                </form>
+                

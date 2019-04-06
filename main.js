@@ -40,9 +40,36 @@ app.post('/create-account', (req, res) => {
     users[req.body.username] = null
     curr_user = req.body.username
 
-    res.redirect('/')
+    res.redirect('dashboard')
+})
+
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard')
 })
 
 
+app.get('/code', (req, res) => {
 
+    var headers = {
+    'content-type': 'application/json'
+    };
 
+    var dataString = '{"code":"console.log(2312)", "lang":"javascript", "stdin":""}';
+        console.log('data between options')
+    var options = {
+        url: 'http://206.189.202.164:8000/compile/',
+        method: 'POST',
+        headers: headers,
+        body: dataString
+    };
+
+    function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(JSON.parse(body).output);
+            res.render('code',{data: JSON.parse(body).output})
+        }
+    }
+
+    request(options, callback);
+
+})

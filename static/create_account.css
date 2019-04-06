@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+body{
+    overflow: hidden;
+}
+
+.hero {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("c.jpeg");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    position: relative;
+    transition: background-image 0.5s linear;
+}
+
+.overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    text-align: center;
+}
+
+.choices {
+    margin: 20px;
+    width: 200px;
+    height: 300px;
+    border-radius: 15px;
+    background-color: rgba(94, 141, 219);
+    color: white;
+    font-size: 25px;
+    border: none;
+    opacity: 0.5;;
+}
+
+.selectors{
+    text-align: center;
+}
+
+.continue{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    background-color: rgba(20, 141, 219);
+    color: white;
+    font-size: 30px;
+    border-radius: 10px;
+}
+
+.continue:hover{
+    background-color:  rgb(20, 91, 186);
+    cursor: pointer;
+}
+
+.choices:hover{
+    cursor: pointer;
+}
+
+.choices.focus{
+    background-color: rgb(33, 91, 186);
+    opacity: 1;
+}
+
+.choices:focus{
+    border: none;
+    outline: none;
+}
+
+#account-form{
+    width: 100vw;
+    height: 100vh;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    position: relative;
+    background-image: url('e.jpeg')
+}
+
+.form-container{
+    background-color:white;
+    padding: 50px;
+    display: inline-block;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.form-container h1{
+    margin-bottom: 20px;
+}
+form h3{
+    font-weight: 400;
+    font-size: 13px;
+    margin: 5px;
+}
+
+form input {
+    padding-top: 5px;
+}
+
+form .submit-btn{
+    color: white;
+    padding: 5px 20px 5px 20px;
+    background-color: black;
+    margin-top: 10px;
+    font-size: 20px;
+}
