@@ -12,7 +12,7 @@ body{
     overflow: hidden;
 }
 
-.form-role {
+#form-role {
     display: none;
 }
 
