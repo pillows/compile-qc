@@ -15,7 +15,7 @@ let groups = {}
 
 app.get('/', (req, res) => {
     res.render('home')
-}) 
+})
 
 app.get('/login', (req, res) => {
     res.render('login')
@@ -32,3 +32,28 @@ app.post('/create-account', (req, res, next) => {
 
 
 
+app.get('/code', (req, res) => {
+
+    var headers = {
+    'content-type': 'application/json'
+    };
+
+    var dataString = '{"code":"console.log(2312)", "lang":"javascript", "stdin":""}';
+        console.log('data between options')
+    var options = {
+        url: 'http://206.189.202.164:8000/compile/',
+        method: 'POST',
+        headers: headers,
+        body: dataString
+    };
+
+    function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(JSON.parse(body).output);
+            res.render('code',{data: JSON.parse(body).output})
+        }
+    }
+
+    request(options, callback);
+
+})
