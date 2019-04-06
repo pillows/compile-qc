@@ -8,7 +8,7 @@ body {
     height: 100vh;
     overflow: hidden;
     background-image: url("c.jpeg");
-    background-size: 100%;
+    background-size: 100% auto;
     background-repeat: no-repeat;
     position: relative;
     transition: background-image 0.5s linear;
@@ -20,6 +20,7 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     display: inline-block;
+    text-align: center;
 }
 
 .choices {
@@ -32,6 +33,27 @@ body {
     font-size: 25px;
     border: none;
     opacity: 0.5;;
+}
+
+.selectors{
+    text-align: center;
+}
+
+.continue{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+    border: none;
+    background-color: rgba(20, 141, 219);
+    color: white;
+    font-size: 30px;
+    border-radius: 10px;
+}
+
+.continue:hover{
+    background-color:  rgb(20, 91, 186);
+    cursor: pointer;
 }
 
 .choices:hover{
