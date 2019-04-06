@@ -17,7 +17,11 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-    
+
+})
+
+app.get('/create-account', (req, res) => {
+    res.render('create-account')
 })
 
 
