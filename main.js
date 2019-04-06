@@ -5,9 +5,22 @@ const port = 3000
 app.set('view engine', 'pug')
 app.use(express.static('static'))
 
+
 app.get('/', (req, res) => {
     res.render('home')
 }) 
+
+
+
+app.get('/login', (req, res) => {
+    res.render('login')
+})
+
+app.post('/login', (req, res) => {
+    
+})
+
+
 
 
 
