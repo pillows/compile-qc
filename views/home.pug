@@ -1,1 +1,97 @@
-<h1>pug works</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .hero {
+            width: 100vw;
+            height: 100vh;
+            background-image: url("b.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .hero-overlay{
+            width: 30%;
+            height: 100%;
+            position: absolute;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 100px;
+        }
+
+        .hero-overlay > h1{
+            font-size: 50px;
+        }
+    
+        .hero-overlay > p {
+            line-height: 30px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .post-hero {
+            height: 100vh;
+            width: 100vw;
+            background-color: #dfdfdf;
+        }
+
+        .login-btn {
+            padding: 10px 30px 10px 30px;
+            background-color: rgb(66, 134, 244);
+            color: white;
+        }
+
+        .login-btn:hover{
+            background-color: rgb(33, 91, 186);
+            cursor: pointer;
+        }
+
+        .create-btn{
+            font-size: 14px;
+            text-decoration: underline;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .create-btn:hover{
+            color: white;
+            cursor: pointer;
+        }
+
+        .cta {
+        }
+
+        .cta a {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class='hero'>
+        <div class='hero-overlay'>
+            <h1> 10 Codes To Griffindor!</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis est dolore modi reiciendis ex quae vel eligendi praesentium illum! Explicabo possimus corporis adipisci! Iure optio pariatur ratione recusandae id soluta fugiat sit at, quod cupiditate, voluptatum, omnis reprehenderit eaque dolore non error in ipsum veniam nesciunt. Nobis sed odio quaerat.
+            </p>
+            <div class='cta'>
+                <a class='login-btn'> Log In </a> 
+                <a class='create-btn'> Create Account</a>
+            </div>
+        </div>
+    </div>
+
+    <div class ='post-hero'> 
+
+    </div>
+    
+</body>
+</html>
