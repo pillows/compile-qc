@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url("c.jpeg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    transition: background-image 0.5s linear;
+}
+
+.overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+}
+
+.choices {
+    margin: 20px;
+    width: 200px;
+    height: 300px;
+    border-radius: 15px;
+    background-color: rgba(94, 141, 219);
+    color: white;
+    font-size: 25px;
+    border: none;
+    opacity: 0.5;;
+}
+
+.choices:hover{
+    cursor: pointer;
+}
+
+.choices.focus{
+    background-color: rgb(33, 91, 186);
+    opacity: 1;
+}
+
+.choices:focus{
+    border: none;
+    outline: none;
+}
