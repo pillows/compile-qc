@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const request = require('request');
 const cookieParser = require('cookie-parser')
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded())
 app.use(cookieParser())
 app.listen(port, () => console.log(`Listening on port ${port}!`))
@@ -15,8 +16,10 @@ app.use(express.json());
 //username: group
 
 const questions = [
-    "You have 3 cups of lemonade left. There are a number of people in line and you can only sell to 3 consecutive people in a row. Given an array of people, where each element represents how much they are willing to pay, what is the maximum amount of money you can make?",
-    ""
+    {
+        description: "You have 3 cups of lemonade left. There are a number of people in line and you can only sell to 3 consecutive people in a row. Given an array of people, where each element represents how much they are willing to pay, what is the maximum amount of money you can make?",
+        name: "Lemonade Stand"
+    }
 ]
 
 //username: group, teacher or student
@@ -104,17 +107,25 @@ app.get('/assign-group', (req, res) => {
 
 //only teacher
 app.post('/assign-group', (req, res) => {
-    console.log('yea');
     let user = users[req.cookies.username]
     if(user.role == 'teacher'){
-        group[req.body.username] = {
+        groups[req.body.username] = {
             teacher: req.body.username,
-            teams: {},
+            teams: req.body,
             points: 0
         }
 
-        group[req.body.username].students.forEach(x => {
-            users[x].group = group[req.body.username].group
+        group[req.body.username].teams.forEach(x => {
+            // users[x].group = group[req.body.username].group
+            // create new student object for each
+
+            //teams object
+            x.teams.forEach(team => {
+                //students array
+                team.students.forEach(student => {
+                    users[student] = {username: student, role: 'student', group: team, assignments: []}
+                })
+            })
         });
 
     }else{
