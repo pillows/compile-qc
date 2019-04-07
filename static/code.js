@@ -40,7 +40,7 @@ submitBtn.addEventListener("click", function(){
     }).then(response => response.json())
     .then(data => {
         console.log(data);
-        document.getElementsByClassName('output')[0].innerHTML = JSON.parse(data.stdout).output;
+        document.getElementsByClassName('output')[0].innerHTML = JSON.parse(data.stdout).output.replace(/\n/g, "<br/>");
         let cases = JSON.parse(data.cases)
         let successes = JSON.parse(data.successes);
         console.log(cases, successes);
