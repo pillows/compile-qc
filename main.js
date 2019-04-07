@@ -30,7 +30,7 @@ var curr_user = {
 }
 
 app.get('/', (req, res) => {
-    if(Object.values(req.cookies).length > 0){
+    if(Object.values(req.cookies).length > 0 && users[req.cookies.username]){
         res.redirect('/dashboard')
     }else{
         res.render('home')
@@ -85,7 +85,7 @@ app.post('/create-account', (req, res) => {
 })
 
 app.get('/dashboard', (req, res) => {
-    if(Object.values(req.cookies).length == 0){
+    if(Object.values(req.cookies).length == 0 || users[req.cookies.username] == null){
         res.redirect('/')
     }else{
         res.render('dashboard', {user: users[req.cookies.username], scores: [45, 35, 65, 90]})
