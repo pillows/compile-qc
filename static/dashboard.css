@@ -91,11 +91,13 @@
     min-height: 300px;
     background-color: white;
     border-top: 1px solid rgba(0,0,0,0.3);
-    text-align: left;
+    transform: translateY(-250px);
+    /* text-align: left; */
     
 }
 .assignments h1 {
     /* margin: 20px; */
+    text-align: center;
 }
 
 .user-details {
@@ -173,3 +175,60 @@
     background-color:rgb(66, 134, 244);
 }
 
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+.carousel-tile{
+    width: 100%;
+    height: 100%;
+}
+
+.assignment-card{
+    font-size: 20px;
+    line-height: 200px;
+    width: 200px;
+    margin: 10px;
+    height: 200px;
+    display: inline-block;
+    /* background-color: blue; */
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    /* background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); */
+}
+
+.carousel-container{
+    width: 100vw;
+    height: 300px;
+}
+
+.carousel-container:hover{
+    cursor: pointer;
+}
+
+.card0 {
+    background-image: linear-gradient(to right top, #c6dafa, #b1c2fd, #ada5fa, #b883ec, #ca58d2);
+}
+
+.card1 {
+    background-image: linear-gradient(to right top, #051937, #00275a, #00357e, #1342a4, #2f4fca)
+}
+
+.card2{
+    background-image :linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)
+}
+
+.card3{
+    background-image: linear-gradient(to right top, #051937, #49265a, #932762, #d03a4a, #eb7112);
+}
+
+.card4{
+    background-image: linear-gradient(to right top, #051937, #092f60, #0d478b, #1060ba, #127aeb);
+}
+
+.card5{
+    background-image: linear-gradient(to right top, #051937, #642f63, #c34462, #f9833c, #ebdc12);
+}

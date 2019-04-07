@@ -9,7 +9,10 @@ html(lang="en")
         link(href='/dashboard.css', rel='stylesheet')
         script(src="https://code.jquery.com/jquery-2.2.4.min.js", integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=",crossorigin="anonymous")
         link(href="https://fonts.googleapis.com/css?family=Roboto|PT+Sans", rel="stylesheet")
-        script(src='dashboard.js' type='text/javascript')
+        script(src='dashboard.js', type='text/javascript')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js', type='text/javascript' )
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css', type='text/javascript')
+        link(href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.css')
     body
         div(class='banner')
 
@@ -49,11 +52,16 @@ html(lang="en")
                 img(src='trophy.png')
                 each val, index in scores
                     div(class=`score team`+(index+1), value=val)
+        div(class='clearfix')
+        
+            
 
         div(class='assignments')
             h1 Current Assignments
-            each question in questions
-                div #{question.name}
-                    if user.role == 'teacher'
-                        button Assign to all students
+            div(class='carousel-container')
+                each question in questions
+                        div(class='assignment-card')
+                            | #{question.name}
+                            //- if user.role == 'teacher'
+                            //- button Assign to all students
             

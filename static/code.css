@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-
+    font-family: PT sans;
 }
 
 body{
@@ -17,6 +17,15 @@ body{
     box-sizing: border-box;
     background-color: white;
     box-shadow: 3px 3px rgba(200,200,200,0.5)
+}
+
+.problem-wrapper h1 {
+    margin: 20px;
+    font-size: 40px;
+}
+
+.problem-wrapper > div {
+    line-height: 25px;
 }
 
 #code_submit {

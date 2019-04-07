@@ -7,14 +7,16 @@
     <title>Document</title>
     link(href='code.css', rel='stylesheet')
     script(src="https://code.jquery.com/jquery-2.2.4.min.js", integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=",crossorigin="anonymous")
+    script(src="https://code.jquery.com/jquery-2.2.4.min.js", integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=",crossorigin="anonymous")
 </head>
 <body>
     <div class ='post-hero'>
         <div class='problem-wrapper'>
+            h1 Lemonade Stand
             div #{questions.description}
         </div>
         <div class='editor-wrapper'>
-            <textarea id="code_submit" class='editor' name="code_submit"></textarea>
+            <textarea placeholder="function main (people) { . . . }" id="code_submit" class='editor' name="code_submit"></textarea>
             <button id="submit"> Run </button>
         </div>
 
