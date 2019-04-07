@@ -4,6 +4,8 @@ const port = 3000
 const bodyParser = require('body-parser')
 const request = require('request');
 const cookieParser = require('cookie-parser')
+
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded())
 app.use(cookieParser())
 app.listen(port, () => console.log(`Listening on port ${port}!`))
@@ -14,8 +16,10 @@ app.use(express.json());
 //username: group
 
 const questions = [
-    "You have 3 cups of lemonade left. There are a number of people in line and you can only sell to 3 consecutive people in a row. Given an array of people, where each element represents how much they are willing to pay, what is the maximum amount of money you can make?",
-    ""
+    {
+        description: "You have 3 cups of lemonade left. There are a number of people in line and you can only sell to 3 consecutive people in a row. Given an array of people, where each element represents how much they are willing to pay, what is the maximum amount of money you can make?",
+        name: "Lemonade Stand"
+    }
 ]
 
 //username: group, teacher or student
@@ -25,7 +29,11 @@ let groups = {}
 var curr_user = 'none'
 
 app.get('/', (req, res) => {
-    res.render('home')
+    if(Object.values(req.cookies).length > 0 && users[req.cookies.username]){
+        res.redirect('/dashboard')
+    }else{
+        res.render('home')
+    }
 })
 
 app.get('/login', (req, res) => {
@@ -47,6 +55,11 @@ app.post('/login', (req, res) => {
         })
         res.redirect('/')
     }
+})
+
+app.post('/logout', (req, res) => {
+    res.clearCookie
+    res.redirect('/')
 })
 
 app.get('/create-account', (req, res) => {
@@ -73,22 +86,39 @@ app.post('/create-account', (req, res) => {
 })
 
 app.get('/dashboard', (req, res) => {
-    console.log("name: ", req.cookies)
-    res.render('dashboard', {user: users[req.cookies.username]})
+    if(Object.values(req.cookies).length == 0 || users[req.cookies.username] == null){
+        res.redirect('/')
+    }else{
+        res.render('dashboard', {user: users[req.cookies.username], scores: [45, 35, 65, 90]})
+    }
+
+})
+
+app.get('/assign-group', (req, res) => {
+    res.render('assign-group')
 })
 
 //only teacher
 app.post('/assign-group', (req, res) => {
     let user = users[req.cookies.username]
     if(user.role == 'teacher'){
-        group[req.body.username] = {
+        groups[req.body.username] = {
             teacher: req.body.username,
-            students: [],
+            teams: req.body,
             points: 0
         }
 
-        group[req.body.username].students.forEach(x => {
-            users[x].group = group[req.body.username].group
+        group[req.body.username].teams.forEach(x => {
+            // users[x].group = group[req.body.username].group
+            // create new student object for each
+
+            //teams object
+            x.teams.forEach(team => {
+                //students array
+                team.students.forEach(student => {
+                    users[student] = {username: student, role: 'student', group: team, assignments: []}
+                })
+            })
         });
 
     }else{
@@ -101,7 +131,6 @@ app.post('/assign-task', (req, res) => {
 })
 
 app.get('/code', (req, res) => {
-
     res.render('code')
 })
 
