@@ -2,24 +2,27 @@ const express = require('express')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 app.use(bodyParser.urlencoded())
+app.use(cookieParser())
 app.listen(port, () => console.log(`Listening on port ${port}!`))
 
 app.set('view engine', 'pug')
 app.use(express.static('static'))
 
 const questions = [
-    "You have 3 cups of lemonade left. There are a number of people in line and you can only sell to 3 consecutive people in a row. Given an array of people, where each element represents how much they are willing to pay, what is the maximum amount of money you can make?"
+    "You have 3 cups of lemonade left. There are a number of people in line and you can only sell to 3 consecutive people in a row. Given an array of people, where each element represents how much they are willing to pay, what is the maximum amount of money you can make?",
+    ""
 ]
 
 //username: group, teacher or student
 let users = {}
-//group: teacher, students, points
+//group: teacher, students, points, assignment
 let groups = {}
 var curr_user = 'none'
 
 app.get('/', (req, res) => {
-    res.render('home', {user: curr_user})
+    res.render('home')
 })
 
 app.get('/login', (req, res) => {
@@ -30,7 +33,15 @@ app.post('/login', (req, res) => {
     if(!users[req.body.username]){
         res.redirect('/login')
     }else{
-        curr_user = users[req.body.username]
+        res.cookie('role', users[req.body.username].role, {
+            secure: false,
+            overwrite: true,
+        })
+    
+        res.cookie('username', users[req.body.username].username, {
+            secure: false,
+            overwrite: true
+        })
         res.redirect('/')
     }
 })
@@ -45,17 +56,27 @@ app.post('/create-account', (req, res) => {
         username: req.body.username,
         role: req.body.role
     }
-    curr_user = users[req.body.username]
+    res.cookie('role', req.body.role, {
+        secure: false,
+        overwrite: true,
+    })
+
+    res.cookie('username', req.body.username, {
+        secure: false,
+        overwrite: true
+    })
 
     res.redirect('dashboard')
 })
 
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard', {user: curr_user})
+    console.log("name: ", req.cookies)
+    res.render('dashboard', {user: users[req.cookies.username]})
 })
 
 //only teacher
 app.post('/assign-group', (req, res) => {
+    let user = users[req.cookies.username]
     if(user.role == 'teacher'){
         group[req.body.username] = {
             teacher: req.body.username,
@@ -63,9 +84,17 @@ app.post('/assign-group', (req, res) => {
             points: 0
         }
 
+        group[req.body.username].students.forEach(x => {
+            users[x].group = group[req.body.username].group
+        });
+
     }else{
         res.redirect('/dashboard')
     }
+})
+
+app.post('/assign-task', (req, res) => {
+   
 })
 
 app.get('/code', (req, res) => {
