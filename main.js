@@ -99,6 +99,7 @@ app.get('/assign-group', (req, res) => {
 
 //only teacher
 app.post('/assign-group', (req, res) => {
+    console.log('yea');
     let user = users[req.cookies.username]
     if(user.role == 'teacher'){
         group[req.body.username] = {
