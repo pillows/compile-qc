@@ -8,7 +8,7 @@ html(lang="en")
         title Document
         link(href='/dashboard.css', rel='stylesheet')
         script(src="https://code.jquery.com/jquery-2.2.4.min.js", integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=",crossorigin="anonymous")
-        link(href="https://fonts.googleapis.com/css?family=Roboto", rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css?family=Roboto|PT+Sans", rel="stylesheet")
         script(src='dashboard.js' type='text/javascript')
     body
         div(class='banner')
@@ -17,26 +17,37 @@ html(lang="en")
             div(class='user-details')
                 h1
                     div(class='user-img')
-                    | Hello, #{user.username}.
-                button(type='button') 
+                    | Hello, #{user.username}!
+                h4    
+                    | Role : #{user.role}
+
+        
+                if(user.role === 'teacher')
+                    a
+                        | Create Class
+                else
+                    a
+                        | Chat Group
+                a(type='button') 
                     img(src='network.png')
                     | Connect
-                button(type='button') 
+                a(type='button') 
                     img(src='friends.png') 
                     | Friends
-                button(type='button')
+                a(type='button')
                     img(src='settings.png')
                     | Settings
-                button(type='button')
+                a(href='/logout')
                     img(src='logout.png')
                     | Log Out 
 
             div(class='team-scores')
                 h1 Current Standings
-                div(class='score team1')
-                div(class='score team2')
-                div(class='score team3')
-                div(class='score team4')
+                img(src='trophy.png')
+                div(class='score team1'  value='{}') A
+                div(class='score team2'  value='{}') B
+                div(class='score team3'  value='{}') C
+                div(class='score team4'  value='{}') D
 
         div(class='assignments')
             h1 Current Assignments
