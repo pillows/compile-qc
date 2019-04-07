@@ -108,16 +108,18 @@ app.post('/assign-group', (req, res) => {
             assignments: []
         }
 
-        group[req.body.username].teams.forEach(x => {
-            // users[x].group = group[req.body.username].group
+        console.log(groups[req.body.username].teams)
 
-            x.teams.forEach(team => {
-                team.students.forEach(student => {
-                    // create new student object for each
-                    users[student] = {username: student, role: 'student', group: team}
-                })
+        groups[req.body.username].teams.forEach(x => {
+            // users[x].group = group[req.body.username].group
+            
+            x.students.forEach(student => {
+                //create new student object for each
+                users[student] = {username: student, role: 'student', group: x.team}
             })
+
         });
+        console.log(users)
 
 
     }else{
