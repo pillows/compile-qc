@@ -89,7 +89,8 @@ app.get('/dashboard', (req, res) => {
     if(Object.values(req.cookies).length == 0 || users[req.cookies.username] == null){
         res.redirect('/')
     }else{
-        res.render('dashboard', {user: users[req.cookies.username], scores: [45, 35, 65, 90]})
+        console.log(questions)
+        res.render('dashboard', {user: users[req.cookies.username], scores: [45, 35, 65, 90], questions:questions})
     }
 
 })
@@ -131,7 +132,7 @@ app.post('/assign-task', (req, res) => {
 })
 
 app.get('/code', (req, res) => {
-    res.render('code')
+    res.render('code', {questions:questions[0]})
 })
 
 app.post('/code', (req, res) => {
@@ -154,10 +155,10 @@ var test_cases =[
 
 for(var i of test_cases){
 if(getAnswer(i.array) != i.answer){
-    console.log("false");
+    console.log("wrong [" + i.array + "]");
 }
 else{
-    console.log("true");
+    console.log("correct ["  + i.array + "]");
 }
 }
 
@@ -186,10 +187,9 @@ checkTestCases();
         if (!error && response.statusCode == 200) {
             console.log("test " + JSON.parse(body).output);
 
-            let myName = "true";
             console.log("body " + JSON.parse(body).output);
             //let hits = JSON.parse(body).output.match(new RegExp("\\b" + myName +"\\b", "g"));
-            let hits = (JSON.parse(body).output.match(/true/g) || []).length;
+            let hits = (JSON.parse(body).output.match(/correct/g) || []).length;
             console.log("trues " + hits);
 
             let output = {
