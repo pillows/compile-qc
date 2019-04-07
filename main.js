@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+
 app.use(bodyParser.urlencoded())
 app.use(cookieParser())
 app.listen(port, () => console.log(`Listening on port ${port}!`))
@@ -19,7 +20,6 @@ const questions = [
 let users = {}
 //group: teacher, students, points, assignment
 let groups = {}
-var curr_user = 'none'
 
 app.get('/', (req, res) => {
     res.render('home')
@@ -42,6 +42,7 @@ app.post('/login', (req, res) => {
             secure: false,
             overwrite: true
         })
+
         res.redirect('/')
     }
 })
@@ -54,8 +55,10 @@ app.post('/create-account', (req, res) => {
     //temp group until assigned
     users[req.body.username] = {
         username: req.body.username,
-        role: req.body.role
+        role: req.body.role,
+        group: ""
     }
+
     res.cookie('role', req.body.role, {
         secure: false,
         overwrite: true,
@@ -66,12 +69,17 @@ app.post('/create-account', (req, res) => {
         overwrite: true
     })
 
-    res.redirect('dashboard')
+    res.redirect('/dashboard')
 })
 
 app.get('/dashboard', (req, res) => {
     console.log("name: ", req.cookies)
-    res.render('dashboard', {user: users[req.cookies.username]})
+    if(!req.cookies){
+        res.redirect('/home')
+    }else{
+        res.render('dashboard', {user: users[req.cookies.username], scores: "40%, 75%, 65%, 85%"})
+    }
+
 })
 
 //only teacher
@@ -80,7 +88,7 @@ app.post('/assign-group', (req, res) => {
     if(user.role == 'teacher'){
         group[req.body.username] = {
             teacher: req.body.username,
-            students: [],
+            teams: {},
             points: 0
         }
 
