@@ -15,11 +15,12 @@ html(lang="en")
         
         div(class='content')
             div(class='user-details')
-                h1
-                    div(class='user-img')
-                    | Hello, #{user.username}!
-                h4    
-                    | Role : #{user.role}
+                div(class='user-head')
+                    h1
+                        div(class='user-img')
+                        | Hello, #{user.username}!
+                    h4    
+                        | Role : #{user.role}
 
         
                 if(user.role === 'teacher')
