@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser')
+const request = require('request');
 const cookieParser = require('cookie-parser')
 
 app.use(bodyParser.urlencoded())
@@ -10,6 +11,8 @@ app.listen(port, () => console.log(`Listening on port ${port}!`))
 
 app.set('view engine', 'pug')
 app.use(express.static('static'))
+app.use(express.json());
+//username: group
 
 const questions = [
     "You have 3 cups of lemonade left. There are a number of people in line and you can only sell to 3 consecutive people in a row. Given an array of people, where each element represents how much they are willing to pay, what is the maximum amount of money you can make?",
@@ -21,8 +24,17 @@ let users = {}
 //group: teacher, students, points, assignment
 let groups = {}
 
+var curr_user = {
+    username: "default",
+    role: "teacher"
+}
+
 app.get('/', (req, res) => {
-    res.render('home')
+    if(Object.values(req.cookies).length > 0){
+        res.redirect('/dashboard')
+    }else{
+        res.render('home')
+    }
 })
 
 app.get('/login', (req, res) => {
@@ -37,7 +49,7 @@ app.post('/login', (req, res) => {
             secure: false,
             overwrite: true,
         })
-    
+
         res.cookie('username', users[req.body.username].username, {
             secure: false,
             overwrite: true
@@ -73,11 +85,10 @@ app.post('/create-account', (req, res) => {
 })
 
 app.get('/dashboard', (req, res) => {
-    console.log("name: ", req.cookies)
-    if(!req.cookies){
-        res.redirect('/home')
+    if(Object.values(req.cookies).length == 0){
+        res.redirect('/')
     }else{
-        res.render('dashboard', {user: users[req.cookies.username], scores: "40%, 75%, 65%, 85%"})
+        res.render('dashboard', {user: users[req.cookies.username], scores: [45, 35, 65, 90]})
     }
 
 })
@@ -102,58 +113,40 @@ app.post('/assign-group', (req, res) => {
 })
 
 app.post('/assign-task', (req, res) => {
-   
+
 })
 
 app.get('/code', (req, res) => {
 
-    // var headers = {
-    // 'content-type': 'application/json'
-    // };
-    //
-    // var dataString = '{"code":"console.log(2312)", "lang":"javascript", "stdin":""}';
-    //     console.log('data between options')
-    // var options = {
-    //     url: 'http://206.189.202.164:8000/compile/',
-    //     method: 'POST',
-    //     headers: headers,
-    //     body: dataString
-    // };
-    //
-    // function callback(error, response, body) {
-    //     if (!error && response.statusCode == 200) {
-    //         console.log(JSON.parse(body).output);
-    //         res.render('code',{data: JSON.parse(body).output})
-    //     }
-    // }
-    //
-    // request(options, callback);
     res.render('code')
 })
 
 app.post('/code', (req, res) => {
+
+    var headers = {
+    'content-type': 'application/json'
+    };
+
+    console.log(req.body);
+    var dataString = JSON.stringify(req.body);
+
+    var options = {
+        url: 'http://qc.mwong.io:8000/compile/',
+        method: 'POST',
+        headers: headers,
+        body: dataString
+    };
+
+    function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log("test " + JSON.parse(body).output);
+            //console.log(JSON.stringify({data: JSON.parse(body).output}));
+            res.json(body)
+            return 0;
+        }
+    }
+
+    request(options, callback);
+
     console.log(1);
-    // var headers = {
-    // 'content-type': 'application/json'
-    // };
-    //
-    // var dataString = '{"code":"console.log(2312)", "lang":"javascript", "stdin":""}';
-    //     console.log('data between options')
-    // var options = {
-    //     url: 'http://206.189.202.164:8000/compile/',
-    //     method: 'POST',
-    //     headers: headers,
-    //     body: dataString
-    // };
-    //
-    // function callback(error, response, body) {
-    //     if (!error && response.statusCode == 200) {
-    //         console.log(JSON.parse(body).output);
-    //         res.render('code',{data: JSON.parse(body).output})
-    //     }
-    // }
-    //
-    // request(options, callback);
 })
-
-

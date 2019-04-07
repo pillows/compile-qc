@@ -1,7 +1,10 @@
 $(document).ready(() => {
     console.log('linked');
     const background = $('.hero')
-    console.log($('.choices'));
+    const defaultVal = 'teacher'
+    $('#form-role').val(defaultVal)
+    console.log('etted');
+
     $('.choices').click( evt => {
         const clickedBtn = $(evt.target)
         const id = $(clickedBtn).attr('value')
