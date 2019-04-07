@@ -2,21 +2,16 @@ const express = require('express')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser')
-<<<<<<< HEAD
 const request = require('request');
-=======
 const cookieParser = require('cookie-parser')
->>>>>>> bf1a1b640d4386d921e7e79efbdc5c9ae9f121f0
 app.use(bodyParser.urlencoded())
 app.use(cookieParser())
 app.listen(port, () => console.log(`Listening on port ${port}!`))
 
 app.set('view engine', 'pug')
 app.use(express.static('static'))
-<<<<<<< HEAD
 app.use(express.json());
 //username: group
-=======
 
 const questions = [
     "You have 3 cups of lemonade left. There are a number of people in line and you can only sell to 3 consecutive people in a row. Given an array of people, where each element represents how much they are willing to pay, what is the maximum amount of money you can make?",
@@ -24,7 +19,6 @@ const questions = [
 ]
 
 //username: group, teacher or student
->>>>>>> bf1a1b640d4386d921e7e79efbdc5c9ae9f121f0
 let users = {}
 //group: teacher, students, points, assignment
 let groups = {}
@@ -46,7 +40,7 @@ app.post('/login', (req, res) => {
             secure: false,
             overwrite: true,
         })
-    
+
         res.cookie('username', users[req.body.username].username, {
             secure: false,
             overwrite: true
@@ -103,7 +97,7 @@ app.post('/assign-group', (req, res) => {
 })
 
 app.post('/assign-task', (req, res) => {
-   
+
 })
 
 app.get('/code', (req, res) => {
@@ -140,5 +134,3 @@ app.post('/code', (req, res) => {
 
     console.log(1);
 })
-
-
