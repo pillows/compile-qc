@@ -24,9 +24,11 @@ html(lang="en")
         
                 if(user.role === 'teacher')
                     a(href = '/assign-group')
+                        img(src='blackboard.png') 
                         | Create Class
                 else
                     a
+                        img(src='group.png') 
                         | Chat Group
                 a(type='button') 
                     img(src='network.png')
@@ -44,10 +46,8 @@ html(lang="en")
             div(class='team-scores')
                 h1 Current Standings
                 img(src='trophy.png')
-                div(class='score team1'  value='{}') A
-                div(class='score team2'  value='{}') B
-                div(class='score team3'  value='{}') C
-                div(class='score team4'  value='{}') D
+                each val, index in scores
+                    div(class=`score team`+(index+1), value=val)
 
         div(class='assignments')
             h1 Current Assignments

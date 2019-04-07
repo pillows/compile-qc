@@ -10,14 +10,22 @@ html(lang="en")
         link(href="https://fonts.googleapis.com/css?family=Roboto|PT+Sans", rel="stylesheet")
         script(src='assign.js' type='text/javascript')
     body
-        h1 Table
+        h1 Create Your Teams 
+            button(class='form-submit' type='button') Finalize Teams
         div(class='roster')
-            div(class='team teamA') Team A
-                button(value='teamA') ADD
-            div(class='team teamB') Team B
-                button(value='teamB') ADD
-            div(class='team teamC') Team C
-                button(value='teamC') ADD
-            div(class='team teamC') Team D
-                button(value='teamd') ADD
-        button(class='form-submit' type='button') GO
+            div(class='form-wrapper')
+                div(class='team teamA') Team A
+                    img(value='teamA', src='add.png')
+                div(class='teamA-roster')
+            div(class='form-wrapper')
+                div(class='team teamB') Team B
+                    img(value='teamB', src='add.png')
+                div(class='teamB-roster')
+            div(class='form-wrapper')
+                div(class='team teamC') Team C
+                    img(value='teamC', src='add.png')
+                div(class='teamC-roster')
+            div(class='form-wrapper')
+                div(class='team teamD') Team D
+                    img(value='teamAD', src='add.png')
+                div(class='teamD-roster')

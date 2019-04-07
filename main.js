@@ -52,7 +52,6 @@ app.post('/login', (req, res) => {
             secure: false,
             overwrite: true
         })
-
         res.redirect('/')
     }
 })
@@ -70,10 +69,8 @@ app.post('/create-account', (req, res) => {
     //temp group until assigned
     users[req.body.username] = {
         username: req.body.username,
-        role: req.body.role,
-        group: ""
+        role: req.body.role
     }
-
     res.cookie('role', req.body.role, {
         secure: false,
         overwrite: true,
@@ -84,7 +81,7 @@ app.post('/create-account', (req, res) => {
         overwrite: true
     })
 
-    res.redirect('/dashboard')
+    res.redirect('dashboard')
 })
 
 app.get('/dashboard', (req, res) => {
@@ -160,6 +157,7 @@ else{
     console.log("true");
 }
 }
+
 }
 
 checkTestCases();
@@ -184,8 +182,21 @@ checkTestCases();
     function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log("test " + JSON.parse(body).output);
+
+            let myName = "true";
+            console.log("body " + JSON.parse(body).output);
+            //let hits = JSON.parse(body).output.match(new RegExp("\\b" + myName +"\\b", "g"));
+            let hits = (JSON.parse(body).output.match(/true/g) || []).length;
+            console.log("trues " + hits);
+
+            let output = {
+                stdout: body,
+                cases: 3,
+                successes: hits
+            }
             //console.log(JSON.stringify({data: JSON.parse(body).output}));
-            res.json(body)
+
+            res.json(output)
             return 0;
         }
     }
