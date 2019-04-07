@@ -27,11 +27,6 @@ let users = {}
 //group: teacher, students, points, assignment
 let groups = {}
 
-var curr_user = {
-    username: "default",
-    role: "teacher"
-}
-
 app.get('/', (req, res) => {
     if(Object.values(req.cookies).length > 0 && users[req.cookies.username]){
         res.redirect('/dashboard')
@@ -112,21 +107,21 @@ app.post('/assign-group', (req, res) => {
         groups[req.body.username] = {
             teacher: req.body.username,
             teams: req.body,
-            points: 0
+            points: 0,
+            assignments: []
         }
 
         group[req.body.username].teams.forEach(x => {
             // users[x].group = group[req.body.username].group
-            // create new student object for each
 
-            //teams object
             x.teams.forEach(team => {
-                //students array
                 team.students.forEach(student => {
-                    users[student] = {username: student, role: 'student', group: team, assignments: []}
+                    // create new student object for each
+                    users[student] = {username: student, role: 'student', group: team}
                 })
             })
         });
+
 
     }else{
         res.redirect('/dashboard')
@@ -134,7 +129,7 @@ app.post('/assign-group', (req, res) => {
 })
 
 app.post('/assign-task', (req, res) => {
-
+    groups[req.cookies.username].assignments.push(req.body.assignment)
 })
 
 app.get('/code', (req, res) => {
@@ -142,8 +137,6 @@ app.get('/code', (req, res) => {
 })
 
 app.post('/code', (req, res) => {
-
-
     let headerCode = "function getAnswer(customers){"
 
     let tailCode = `

@@ -51,4 +51,8 @@ html(lang="en")
 
         div(class='assignments')
             h1 Current Assignments
+                if user.role == 'student'
+                    each val in user.assignments
+                        #{val}
+                    
         
