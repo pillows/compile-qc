@@ -1,10 +1,11 @@
 $(document).ready(() => {
-    $('.team button').click(evt => {
+    $('.team img').click(evt => {
+        console.log('ck');
         const team = $(evt.target).attr('value')
-        $(`div.${team}`).prepend(add)
+        $(`div.${team}-roster`).prepend(createStudentRow)
     })
+
     $('.form-submit').click(() => {
-        console.log('click submit form');
         const roster = [
             {
                 team: 'A',
@@ -31,7 +32,14 @@ $(document).ready(() => {
 })
 
 function createStudentRow () {
-    return $(`
-
+    const row = $(`
+        <div>
+            <input placeholder="Student username"class='form-input'> </input> <img src='garbage.png'>
+        </div>
     `)
+
+    row.find('img').click(function(){
+        row.remove()
+    })
+    return row
 }

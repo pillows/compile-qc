@@ -5,3 +5,86 @@
     font-family: PT sans;
     /* font-family: -apple-system,BlinkMacSystemFont,San Francisco,Helvetica Neue,Helvetica,Ubuntu,Roboto,Noto,Segoe UI,Arial,sans-serif */
 }
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    background-size: contain;
+}
+
+body h1 {
+    margin: 10px;
+}
+
+
+.form-input {
+    background-color: white;
+    /* background-color: rgba(200,200,200,0.3); */
+    margin: 5px;
+    height: 40px;
+    width: calc(100% - 50px);
+}
+.form-wrapper {
+    width: 25%;
+    padding: 10px;
+    display: inline-block;
+    float: left;
+}
+.team {
+    font-size: 30px;
+    color: white;
+    padding: 15px;
+}
+.team img {
+    float: right;
+    color: white;
+    height: 25px;
+}
+
+.team img:hover {
+    cursor: pointer;
+}
+
+.form-input {
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+.form-input + img{
+    height: 25px;
+}
+
+.form-input + img{
+    cursor: pointer;
+}
+
+.form-submit{
+    border: none;
+    outline: none;
+    padding: 20px;
+    background-color: blue;
+    color: white;
+    font-size: 25px;
+}
+
+.form-submit:hover{
+    cursor: pointer;
+}
+
+.teamA{
+    background-color: red;
+    color: white;
+}
+
+.teamB{
+    background-color: purple;
+}
+
+.teamC{
+    background-color: green;
+}
+
+.teamD{
+    background-color: blue;
+}
