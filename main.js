@@ -59,6 +59,11 @@ app.post('/login', (req, res) => {
     }
 })
 
+app.post('/logout', (req, res) => {
+    res.clearCookie
+    res.redirect('/')
+})
+
 app.get('/create-account', (req, res) => {
     res.render('create-account')
 })
@@ -121,7 +126,6 @@ app.post('/assign-task', (req, res) => {
 })
 
 app.get('/code', (req, res) => {
-
     res.render('code')
 })
 
