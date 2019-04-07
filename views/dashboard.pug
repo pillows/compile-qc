@@ -7,14 +7,36 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title Document
         link(href='/dashboard.css', rel='stylesheet')
+        script(src="https://code.jquery.com/jquery-2.2.4.min.js", integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=",crossorigin="anonymous")
+        link(href="https://fonts.googleapis.com/css?family=Roboto", rel="stylesheet")
+        script(src='dashboard.js' type='text/javascript')
     body
-        <h1>user: #{user.username} </h1>
-        <h1>role: #{user.role}</h1>
         div(class='banner')
         
         div(class='content')
+            div(class='user-details')
+                h1
+                    div(class='user-img')
+                    | Hello, #{user.username}.
+                button(type='button') 
+                    img(src='network.png')
+                    | Connect
+                button(type='button') 
+                    img(src='friends.png') 
+                    | Friends
+                button(type='button')
+                    img(src='settings.png')
+                    | Settings
+                button(type='button')
+                    img(src='logout.png')
+                    | Log Out 
 
             div(class='team-scores')
+                h1 Current Standings
+                div(class='score team1')
+                div(class='score team2')
+                div(class='score team3')
+                div(class='score team4')
 
         div(class='assignments')
             h1 Current Assignments
