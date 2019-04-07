@@ -3,6 +3,7 @@ $(document).ready(() => {
     const background = $('.hero')
     const defaultVal = 'teacher'
     $('#form-role').val(defaultVal)
+    console.log('etted');
 
     $('.choices').click( evt => {
         const clickedBtn = $(evt.target)
