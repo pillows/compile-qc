@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    link(href='/dashboard.css', rel='stylesheet')
+    link(href='code.css', rel='stylesheet')
     script(src="https://code.jquery.com/jquery-2.2.4.min.js", integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=",crossorigin="anonymous")
 </head>
 <body>
-
-
     <div class ='post-hero'>
-        <textarea id="code_submit" name="code_submit" style="width:300px; height:150px;"></textarea>
-        <button id="submit">Submit</button>
+        <div class='problem-wrapper'>
+            div #{questions.description}
+        </div>
+        <div class='editor-wrapper'>
+            <textarea id="code_submit" class='editor' name="code_submit"></textarea>
+            <button id="submit"> Run </button>
+        </div>
 
         <div class="output">
 
         </div>
+
+        button Next question
     </div>
 
 

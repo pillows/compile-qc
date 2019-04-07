@@ -12,36 +12,37 @@ html(lang="en")
         script(src='dashboard.js' type='text/javascript')
     body
         div(class='banner')
-        
+
         div(class='content')
             div(class='user-details')
-                h1
-                    div(class='user-img')
-                    | Hello, #{user.username}!
-                h4    
-                    | Role : #{user.role}
+                div(class='user-head')
+                    h1
+                        div(class='user-img')
+                        | Hello, #{user.username}!
+                    h4
+                        | Role : #{user.role}
 
-        
+
                 if(user.role === 'teacher')
                     a(href = '/assign-group')
-                        img(src='blackboard.png') 
+                        img(src='blackboard.png')
                         | Create Class
                 else
                     a
-                        img(src='group.png') 
+                        img(src='group.png')
                         | Chat Group
-                a(type='button') 
+                a(type='button')
                     img(src='network.png')
                     | Connect
-                a(type='button') 
-                    img(src='friends.png') 
+                a(type='button')
+                    img(src='friends.png')
                     | Friends
                 a(type='button')
                     img(src='settings.png')
                     | Settings
                 a(href='/logout')
                     img(src='logout.png')
-                    | Log Out 
+                    | Log Out
 
             div(class='team-scores')
                 h1 Current Standings
@@ -51,8 +52,7 @@ html(lang="en")
 
         div(class='assignments')
             h1 Current Assignments
-                if user.role == 'student'
-                    each val in user.assignments
-                        #{val}
-                    
-        
+            each question in questions
+                div #{question.name}
+                    button Assign to all students
+            
