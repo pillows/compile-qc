@@ -54,5 +54,6 @@ html(lang="en")
             h1 Current Assignments
             each question in questions
                 div #{question.name}
-                    button Assign to all students
+                    if user.role == 'teacher'
+                        button Assign to all students
             
