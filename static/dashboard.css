@@ -2,26 +2,28 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system,BlinkMacSystemFont,San Francisco,Helvetica Neue,Helvetica,Ubuntu,Roboto,Noto,Segoe UI,Arial,sans-serif
+    font-family: PT sans;
+    /* font-family: -apple-system,BlinkMacSystemFont,San Francisco,Helvetica Neue,Helvetica,Ubuntu,Roboto,Noto,Segoe UI,Arial,sans-serif */
 }
 
 .banner {
     width: 100vw;
-    height: 200px;
-    background-color:  rgb(33, 91, 186);;
+    height: 300px;
+    /* background-color:  rgb(33, 91, 186);;*/
+    background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)
 }
 
 .content {
     position: relative;
     width: 100vw;
-    min-height: 300px;
+    min-height: 200px;
     background-color: #e9ebee;
 }
 
 .team-scores{
     padding: 10px;
     position: absolute;
-    transform: translateY(-100px);
+    transform: translateY(-250px);
     margin: 30px;
     width: 500px;
     height: 300px;
@@ -34,6 +36,14 @@
 
 .team-scores h1 {
     margin-left: 20px;
+}
+
+.team-scores img {
+    z-index: -1;
+    margin-left: 50px;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 .score{
@@ -50,6 +60,8 @@
     transform: translateY(100%);
     transition: transform 1s linear, opacity 1s linear;
     max-height: 100%;
+    padding: 5px;
+    color: white;
 }
 
 .team1{
@@ -60,7 +72,7 @@
 
 .team2{
     left: 25%;
-    background-color: yellow;
+    background-color: purple;
 }
 
 .team3{
@@ -79,6 +91,8 @@
     min-height: 300px;
     background-color: white;
     border-top: 1px solid rgba(0,0,0,0.3);
+    text-align: left;
+    
 }
 .assignments h1 {
     margin: 20px;
@@ -89,7 +103,7 @@
     min-height: 200px;
     float: left;
     background-color: white;
-    transform: translateY(-100px);
+    transform: translateY(-250px);
     box-shadow: 2px 2px rgba(100,100,100,0.5);
     padding: 5px;
     text-align: left;
@@ -111,11 +125,23 @@
 
 .user-details h1 {
     padding: 20px 30px 20px 30px;
-    border-bottom: 1px solid black;
     margin-bottom: 10px;
 }
 
-.user-details button {
+.user-details h1 img {
+    display: inline-block;
+    width: 25px;
+}
+.user-details h4 {
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    background-color: blue;
+    /* border-top: 1px solid black;
+    border-bottom: 1px solid black; */
+}
+.user-details a {
     padding-left: 30px;
     text-align: left;
     display: inline-block;
@@ -125,15 +151,17 @@
     font-size: 16px;
     line-height: 50px;
     max-height: 50px;
+    color: black;
+    text-decoration: none;
 }
 
-.user-details button:hover {
+.user-details a:hover {
     cursor: pointer;
     background-color: black;
     color: white;
 }
 
-.user-details button img {
+.user-details a img {
     height: 25px;
     box-sizing: border-box;
     padding-left: 5px;
