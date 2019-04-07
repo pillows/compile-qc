@@ -93,6 +93,10 @@ app.get('/dashboard', (req, res) => {
 
 })
 
+app.get('/assign-group', (req, res) => {
+    res.render('assign-group')
+})
+
 //only teacher
 app.post('/assign-group', (req, res) => {
     let user = users[req.cookies.username]
