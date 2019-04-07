@@ -107,11 +107,42 @@ app.get('/code', (req, res) => {
 
 app.post('/code', (req, res) => {
 
+
+    let headerCode = "function getAnswer(customers){"
+
+    let tailCode = `
+}
+
+
+function checkTestCases(){
+var test_cases =[
+{array: [1,2,3], answer: 6},
+{array:[4,5,2,6,1,7,3,7,2,3], answer: 17},
+{array:[8, 4, 3, 13, 9, 7, 10, 2, 14, 5], answer: 29}
+
+]
+
+
+for(var i of test_cases){
+if(getAnswer(i.array) != i.answer){
+    console.log("false");
+}
+else{
+    console.log("true");
+}
+}
+}
+
+checkTestCases();
+    `;
+
+    let completeCode = headerCode + req.body.code + tailCode;
+    console.log(completeCode);
     var headers = {
     'content-type': 'application/json'
     };
 
-    console.log(req.body);
+    req.body.code = completeCode;
     var dataString = JSON.stringify(req.body);
 
     var options = {
