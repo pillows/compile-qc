@@ -41,7 +41,6 @@ app.post('/create-account', (req, res) => {
         username: req.body.username,
         role: req.body.role
     }
-    console.log(req.body.role)
     curr_user = users[req.body.username]
 
     res.redirect('dashboard')

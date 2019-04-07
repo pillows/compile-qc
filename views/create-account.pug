@@ -9,22 +9,23 @@ html(lang="en")
         link(href='create_account.css', rel='stylesheet')
         script(src='create_account.js' type='text/javascript')
     body
-        <form method='POST' action='/create-account'>
-            div(class='hero')
-                div(class='overlay')
-                    div(class='selectors' name='role')
-                        button(class='choices focus' name='role' value='teacher' type='button') I am a teacher
-                        button(class='choices' name='role' value='student' type='button') I am a student
-                        
-                    a(href="#account-form" class='continue') &#9654
-
-            div(id="account-form")
-                div(class='form-container')
-                    <h1>Create Your Account</h1>
+        div(class='hero')
+            div(class='overlay')
+                div(class='selectors' name='role')
+                    button(class='choices focus' name='role' value='teacher' type='button') I am a teacher
+                    button(class='choices' name='role' value='student' type='button') I am a student
                     
-                        <h3>Username: </h3> <input name='username' type='text'><br>
-                        <h3>Password: </h3> <input name='password' type='password'><br>
-                        <h3>Email: </h3> <input name='email' type='email'>
-                        <br>
-                        <input class='submit-btn' type='submit'>
-        </form>
+                a(href="#account-form" class='continue') &#9654
+
+        div(id="account-form")
+            div(class='form-container')
+                <h1>Create Your Account</h1>
+                <form method="POST" action="/create-account" >
+                    <input id='form-role' name='role' type='text'>
+                    <h3>Username: </h3> <input name='username' type='text'><br>
+                    <h3>Password: </h3> <input name='password' type='password'><br>
+                    <h3>Email: </h3> <input name='email' type='email'>
+                    <br>
+                    <input class='submit-btn' type='submit'>
+                </form>
+                
