@@ -8,9 +8,13 @@ app.listen(port, () => console.log(`Listening on port ${port}!`))
 app.set('view engine', 'pug')
 app.use(express.static('static'))
 
+const questions = [
+    "You have 3 cups of lemonade left. There are a number of people in line and you can only sell to 3 consecutive people in a row. Given an array of people, where each element represents how much they are willing to pay, what is the maximum amount of money you can make?"
+]
+
 //username: group, teacher or student
 let users = {}
-//group: people, points
+//group: teacher, students, points
 let groups = {}
 var curr_user = 'none'
 
@@ -48,6 +52,20 @@ app.post('/create-account', (req, res) => {
 
 app.get('/dashboard', (req, res) => {
     res.render('dashboard', {user: curr_user})
+})
+
+//only teacher
+app.post('/assign-group', (req, res) => {
+    if(user.role == 'teacher'){
+        group[req.body.username] = {
+            teacher: req.body.username,
+            students: [],
+            points: 0
+        }
+
+    }else{
+        res.redirect('/dashboard')
+    }
 })
 
 app.get('/code', (req, res) => {
@@ -100,3 +118,5 @@ app.post('/code', (req, res) => {
     //
     // request(options, callback);
 })
+
+
