@@ -11,9 +11,10 @@ html(lang="en")
     body
         div(class='hero')
             div(class='overlay')
-                div(class='selectors')
-                    button(class='choices focus' value='teacher' type='button') I am a teacher
-                    button(class='choices' value='student' type='button') I am a student
+                div(class='selectors' name='role')
+                    button(class='choices focus' name='role' value='teacher' type='button') I am a teacher
+                    button(class='choices' name='role' value='student' type='button') I am a student
+                    
                 a(href="#account-form" class='continue') &#9654
 
         div(id="account-form")
