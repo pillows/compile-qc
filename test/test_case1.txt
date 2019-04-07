@@ -1,0 +1,20 @@
+var customers = [4,5,2,6,1,7,3,7,2,3];
+var totalAmount = 0;
+var maxAmount = 0;
+for(var i = 0; i < customers.length; i++){
+	for(var j = 0; j < 3; j++){
+		
+		totalAmount+=customers[i+j];
+		
+	}
+	
+	if(totalAmount > maxAmount)
+		maxAmount = totalAmount;
+	
+	if(i == customers.length - 3){
+		break;
+	}
+	totalAmount = 0;
+}
+
+console.log(maxAmount)
