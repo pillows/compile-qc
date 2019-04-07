@@ -12,7 +12,10 @@ app.use(express.static('static'))
 let users = {}
 //group: people, points
 let groups = {}
-var curr_user = 'none'
+var curr_user = {
+    username: "default",
+    role: "teacher"
+}
 
 app.get('/', (req, res) => {
     res.render('home', {user: curr_user})
@@ -44,7 +47,7 @@ app.post('/create-account', (req, res) => {
 })
 
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard')
+    res.render('dashboard', {user: curr_user})
 })
 
 
